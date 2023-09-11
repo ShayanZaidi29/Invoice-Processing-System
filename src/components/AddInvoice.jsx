@@ -22,7 +22,7 @@ const defaultObj = {
     action:'pending'
 }
 
-const AddInvoice = () => {
+const AddInvoice = ( {setAddInvoice}) => {
     const [invoice, setInvoice] = useState(defaultObj)
 
     const onValueChange = (e) => {
@@ -31,6 +31,8 @@ const AddInvoice = () => {
 
     const addNewInvoice = async() => {
         await saveInvoice({...invoice, amount: Number(invoice['amount']) }); 
+
+        setAddInvoice(false);
     }
 
     return (
@@ -41,7 +43,7 @@ const AddInvoice = () => {
                     variant = "standard"
                     placeholder="Enter vender Name"
                     onChange={(e) => onValueChange(e)}
-                    name="vender"
+                    name="vendor"
                     autoComplete="off"
                 />
                 <TextField
